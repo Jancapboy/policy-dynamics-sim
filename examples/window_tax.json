@@ -1,0 +1,19 @@
+{
+  "name": "Window Tax Policy",
+  "description": "Classic policy fable: taxing windows leads to bricked-up windows, reducing revenue while harming public health.",
+  "time_step": 0.5,
+  "total_time": 50,
+  "stocks": [
+    {"name": "revenue", "initial_value": 1000, "unit": "gold coins"},
+    {"name": "public_health", "initial_value": 100, "min_value": 0, "max_value": 100, "unit": "index"},
+    {"name": "windows", "initial_value": 500, "min_value": 0, "unit": "count"}
+  ],
+  "flows": [
+    {"name": "tax_income", "target_stock": "revenue", "formula": "tax_rate * windows", "unit": "gold/year"},
+    {"name": "health_decline", "source_stock": "public_health", "target_stock": "", "formula": "(500 - windows) * 0.02", "unit": "index/year"},
+    {"name": "window_bricking", "source_stock": "windows", "target_stock": "", "formula": "windows * tax_rate * 0.5", "unit": "count/year"}
+  ],
+  "auxiliaries": [
+    {"name": "tax_rate", "formula": "0.5", "unit": "gold/window"}
+  ]
+}

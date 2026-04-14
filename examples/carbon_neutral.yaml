@@ -1,0 +1,39 @@
+name: Carbon Neutrality Transition
+description: |
+  Simulates the transition to carbon neutrality.
+  Investment reduces emissions but faces diminishing returns and public resistance.
+time_step: 1.0
+total_time: 50
+stocks:
+  - name: emissions
+    initial_value: 1000
+    min_value: 0
+    unit: Mt CO2
+  - name: green_infrastructure
+    initial_value: 10
+    min_value: 0
+    unit: index
+  - name: public_support
+    initial_value: 60
+    min_value: 0
+    max_value: 100
+    unit: percent
+flows:
+  - name: emission_reduction
+    source_stock: emissions
+    target_stock: ""
+    formula: green_infrastructure * 5
+    unit: Mt/year
+  - name: green_investment
+    target_stock: green_infrastructure
+    formula: clamp(public_support * 0.1, 0, 10)
+    unit: index/year
+  - name: support_erosion
+    source_stock: public_support
+    target_stock: ""
+    formula: clamp((emissions - 200) * 0.001, 0, 2)
+    unit: percent/year
+auxiliaries:
+  - name: policy_pressure
+    formula: "100 - emissions / 10"
+    unit: score
