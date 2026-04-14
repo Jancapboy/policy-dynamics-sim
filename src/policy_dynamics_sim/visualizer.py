@@ -7,7 +7,7 @@ from typing import Any, List, Optional
 from policy_dynamics_sim.engine import SDEngine
 
 
-def _get_plt():
+def _get_plt() -> Any:
     """Import matplotlib with a helpful error message."""
     try:
         import matplotlib.pyplot as plt
