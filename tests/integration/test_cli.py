@@ -9,7 +9,6 @@ import pytest
 
 from policy_dynamics_sim.engine import SDEngine, load_config
 
-
 EXAMPLES_DIR = Path(__file__).resolve().parents[2] / "examples"
 CARBON_YAML = EXAMPLES_DIR / "carbon_neutral.yaml"
 TAX_JSON = EXAMPLES_DIR / "window_tax.json"
