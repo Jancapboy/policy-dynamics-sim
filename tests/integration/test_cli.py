@@ -75,11 +75,15 @@ class TestCliEndToEnd:
 
     def test_cli_stock_filter_plot(self, tmp_path: Path) -> None:
         plot_path = tmp_path / "filtered.png"
-        result = _run_cli([
-            str(CARBON_YAML),
-            "--plot", str(plot_path),
-            "--stocks", "emissions",
-        ])
+        result = _run_cli(
+            [
+                str(CARBON_YAML),
+                "--plot",
+                str(plot_path),
+                "--stocks",
+                "emissions",
+            ]
+        )
         assert result.returncode == 0, result.stderr
         assert plot_path.exists()
 
